@@ -1,0 +1,165 @@
+{
+  "apps": [
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "category": "Entertainment",
+      "icon": "/icons/apps/youtube.svg",
+      "url": "https://www.youtube.com",
+      "color": "#FF0000"
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "category": "Music",
+      "icon": "/icons/apps/spotify.svg",
+      "url": "https://open.spotify.com",
+      "color": "#1DB954"
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "category": "Social",
+      "icon": "/icons/apps/reddit.svg",
+      "url": "https://www.reddit.com",
+      "color": "#FF4500"
+    },
+    {
+      "id": "discord",
+      "name": "Discord",
+      "category": "Social",
+      "icon": "/icons/apps/discord.svg",
+      "url": "https://discord.com/app",
+      "color": "#5865F2"
+    },
+    {
+      "id": "twitter",
+      "name": "Twitter / X",
+      "category": "Social",
+      "icon": "/icons/apps/x.svg",
+      "url": "https://twitter.com",
+      "color": "#000000"
+    },
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "category": "Social",
+      "icon": "/icons/apps/instagram.svg",
+      "url": "https://www.instagram.com",
+      "color": "#E1306C"
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok",
+      "category": "Entertainment",
+      "icon": "/icons/apps/tiktok.svg",
+      "url": "https://www.tiktok.com",
+      "color": "#000000"
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "category": "Entertainment",
+      "icon": "/icons/apps/netflix.svg",
+      "url": "https://www.netflix.com",
+      "color": "#E50914"
+    },
+    {
+      "id": "google-docs",
+      "name": "Google Docs",
+      "category": "Productivity",
+      "icon": "/icons/apps/google-docs.svg",
+      "url": "https://docs.google.com/document/u/0/",
+      "color": "#4285F4"
+    },
+    {
+      "id": "google-slides",
+      "name": "Google Slides",
+      "category": "Productivity",
+      "icon": "/icons/apps/google-slides.svg",
+      "url": "https://docs.google.com/presentation/u/0/",
+      "color": "#FBBC05"
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "category": "Productivity",
+      "icon": "/icons/apps/notion.svg",
+      "url": "https://www.notion.so",
+      "color": "#000000"
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "category": "Developer",
+      "icon": "/icons/apps/github.svg",
+      "url": "https://github.com",
+      "color": "#181717"
+    },
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "category": "Developer",
+      "icon": "/icons/apps/chatgpt.svg",
+      "url": "https://chat.openai.com",
+      "color": "#10A37F"
+    },
+    {
+      "id": "wikipedia",
+      "name": "Wikipedia",
+      "category": "Education",
+      "icon": "/icons/apps/wikipedia.svg",
+      "url": "https://www.wikipedia.org",
+      "color": "#000000"
+    },
+    {
+      "id": "duolingo",
+      "name": "Duolingo",
+      "category": "Education",
+      "icon": "/icons/apps/duolingo.svg",
+      "url": "https://www.duolingo.com",
+      "color": "#58CC02"
+    },
+    {
+      "id": "khan-academy",
+      "name": "Khan Academy",
+      "category": "Education",
+      "icon": "/icons/apps/khan-academy.svg",
+      "url": "https://www.khanacademy.org",
+      "color": "#0B7285"
+    },
+    {
+      "id": "twitch",
+      "name": "Twitch",
+      "category": "Entertainment",
+      "icon": "/icons/apps/twitch.svg",
+      "url": "https://www.twitch.tv",
+      "color": "#9146FF"
+    },
+    {
+      "id": "soundcloud",
+      "name": "SoundCloud",
+      "category": "Music",
+      "icon": "/icons/apps/soundcloud.svg",
+      "url": "https://soundcloud.com",
+      "color": "#FF5500"
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "category": "Developer",
+      "icon": "/icons/apps/figma.svg",
+      "url": "https://www.figma.com",
+      "color": "#0ACF83"
+    },
+    {
+      "id": "canva",
+      "name": "Canva",
+      "category": "Productivity",
+      "icon": "/icons/apps/canva.svg",
+      "url": "https://www.canva.com",
+      "color": "#00C4CC"
+    }
+  ]
+}
+

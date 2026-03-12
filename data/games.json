@@ -1,0 +1,264 @@
+{
+  "categories": [
+    "Action",
+    "Puzzle",
+    "Arcade",
+    "Multiplayer",
+    "Sports",
+    "Strategy",
+    "Idle"
+  ],
+  "games": [
+    {
+      "id": "slope",
+      "name": "Slope",
+      "category": "Arcade",
+      "thumbnail": "/icons/games/slope.png",
+      "url": "https://slope-game.github.io/",
+      "useProxy": true,
+      "description": "Navigate a ball down a never-ending slope.",
+      "plays": 48291
+    },
+    {
+      "id": "1v1-lol",
+      "name": "1v1.lol",
+      "category": "Action",
+      "thumbnail": "/icons/games/1v1.png",
+      "url": "https://1v1.lol/",
+      "useProxy": true,
+      "description": "Build and battle in fast-paced 1v1 matches.",
+      "plays": 39210
+    },
+    {
+      "id": "shell-shockers",
+      "name": "Shell Shockers",
+      "category": "Multiplayer",
+      "thumbnail": "/icons/games/shell-shockers.png",
+      "url": "https://shellshock.io/",
+      "useProxy": true,
+      "description": "Egg-based online FPS mayhem.",
+      "plays": 51234
+    },
+    {
+      "id": "paper-io",
+      "name": "Paper.io",
+      "category": "Arcade",
+      "thumbnail": "/icons/games/paper-io.png",
+      "url": "https://paper-io.com/",
+      "useProxy": true,
+      "description": "Capture territory by drawing lines.",
+      "plays": 28111
+    },
+    {
+      "id": "krunker",
+      "name": "Krunker.io",
+      "category": "Multiplayer",
+      "thumbnail": "/icons/games/krunker.png",
+      "url": "https://krunker.io/",
+      "useProxy": true,
+      "description": "Fast-paced pixel FPS in the browser.",
+      "plays": 67429
+    },
+    {
+      "id": "cookie-clicker",
+      "name": "Cookie Clicker",
+      "category": "Idle",
+      "thumbnail": "/icons/games/cookie-clicker.png",
+      "url": "https://orteil.dashnet.org/cookieclicker/",
+      "useProxy": true,
+      "description": "Click cookies, buy upgrades, repeat.",
+      "plays": 95822
+    },
+    {
+      "id": "retro-bowl",
+      "name": "Retro Bowl",
+      "category": "Sports",
+      "thumbnail": "/icons/games/retro-bowl.png",
+      "url": "https://retro-bowl.io/",
+      "useProxy": true,
+      "description": "Retro-style American football management.",
+      "plays": 43421
+    },
+    {
+      "id": "drift-boss",
+      "name": "Drift Boss",
+      "category": "Arcade",
+      "thumbnail": "/icons/games/drift-boss.png",
+      "url": "https://poki.com/en/g/drift-boss",
+      "useProxy": true,
+      "description": "Tap to drift and stay on the platform.",
+      "plays": 29831
+    },
+    {
+      "id": "tunnel-rush",
+      "name": "Tunnel Rush",
+      "category": "Arcade",
+      "thumbnail": "/icons/games/tunnel-rush.png",
+      "url": "https://tunnelrushgame.io/",
+      "useProxy": true,
+      "description": "Dodge obstacles at insane speeds.",
+      "plays": 38291
+    },
+    {
+      "id": "run-3",
+      "name": "Run 3",
+      "category": "Arcade",
+      "thumbnail": "/icons/games/run-3.png",
+      "url": "https://player03.com/run/3/",
+      "useProxy": true,
+      "description": "Run through endless space tunnels.",
+      "plays": 50321
+    },
+    {
+      "id": "moto-x3m",
+      "name": "Moto X3M",
+      "category": "Sports",
+      "thumbnail": "/icons/games/moto-x3m.png",
+      "url": "https://www.crazygames.com/game/moto-x3m",
+      "useProxy": true,
+      "description": "Stunt bike racing with crazy tracks.",
+      "plays": 41022
+    },
+    {
+      "id": "geometry-dash",
+      "name": "Geometry Dash",
+      "category": "Arcade",
+      "thumbnail": "/icons/games/geometry-dash.png",
+      "url": "https://geometrydash.io/",
+      "useProxy": true,
+      "description": "Rhythm-based platforming challenge.",
+      "plays": 67219
+    },
+    {
+      "id": "smash-karts",
+      "name": "Smash Karts",
+      "category": "Multiplayer",
+      "thumbnail": "/icons/games/smash-karts.png",
+      "url": "https://smashkarts.io/",
+      "useProxy": true,
+      "description": "Battle it out in chaotic kart arenas.",
+      "plays": 38922
+    },
+    {
+      "id": "agar-io",
+      "name": "Agar.io",
+      "category": "Multiplayer",
+      "thumbnail": "/icons/games/agar-io.png",
+      "url": "https://agar.io/",
+      "useProxy": true,
+      "description": "Grow your cell by eating others.",
+      "plays": 81234
+    },
+    {
+      "id": "diep-io",
+      "name": "Diep.io",
+      "category": "Multiplayer",
+      "thumbnail": "/icons/games/diep-io.png",
+      "url": "https://diep.io/",
+      "useProxy": true,
+      "description": "Tank battles with upgrade trees.",
+      "plays": 51287
+    },
+    {
+      "id": "hexanaut",
+      "name": "Hexanaut.io",
+      "category": "Strategy",
+      "thumbnail": "/icons/games/hexanaut.png",
+      "url": "https://hexanaut.io/",
+      "useProxy": true,
+      "description": "Capture hexes and control the board.",
+      "plays": 22109
+    },
+    {
+      "id": "vex-7",
+      "name": "Vex 7",
+      "category": "Action",
+      "thumbnail": "/icons/games/vex-7.png",
+      "url": "https://poki.com/en/g/vex-7",
+      "useProxy": true,
+      "description": "Precision platforming with deadly traps.",
+      "plays": 27412
+    },
+    {
+      "id": "stickman-hook",
+      "name": "Stickman Hook",
+      "category": "Arcade",
+      "thumbnail": "/icons/games/stickman-hook.png",
+      "url": "https://poki.com/en/g/stickman-hook",
+      "useProxy": true,
+      "description": "Swing through levels with style.",
+      "plays": 36422
+    },
+    {
+      "id": "ovo",
+      "name": "OvO",
+      "category": "Action",
+      "thumbnail": "/icons/games/ovo.png",
+      "url": "https://ovo.cool/",
+      "useProxy": true,
+      "description": "Fast-paced parkour platformer.",
+      "plays": 29210
+    },
+    {
+      "id": "death-run-3d",
+      "name": "Death Run 3D",
+      "category": "Arcade",
+      "thumbnail": "/icons/games/death-run-3d.png",
+      "url": "https://deathrun3d.com/",
+      "useProxy": true,
+      "description": "Reaction test in a neon tunnel.",
+      "plays": 19832
+    },
+    {
+      "id": "blumgi-rocket",
+      "name": "Blumgi Rocket",
+      "category": "Arcade",
+      "thumbnail": "/icons/games/blumgi-rocket.png",
+      "url": "https://poki.com/en/g/blumgi-rocket",
+      "useProxy": true,
+      "description": "Launch and boost your rocket to the goal.",
+      "plays": 16543
+    },
+    {
+      "id": "basket-random",
+      "name": "Basket Random",
+      "category": "Sports",
+      "thumbnail": "/icons/games/basket-random.png",
+      "url": "https://www.twoplayergames.org/game/basket-random",
+      "useProxy": true,
+      "description": "Wacky 2D basketball duels.",
+      "plays": 25531
+    },
+    {
+      "id": "rooftop-snipers",
+      "name": "Rooftop Snipers",
+      "category": "Action",
+      "thumbnail": "/icons/games/rooftop-snipers.png",
+      "url": "https://rooftopsnipers.com/",
+      "useProxy": true,
+      "description": "One-button duels on dangerous rooftops.",
+      "plays": 30123
+    },
+    {
+      "id": "monkey-mart",
+      "name": "Monkey Mart",
+      "category": "Strategy",
+      "thumbnail": "/icons/games/monkey-mart.png",
+      "url": "https://poki.com/en/g/monkey-mart",
+      "useProxy": true,
+      "description": "Run a chaotic monkey supermarket.",
+      "plays": 33210
+    },
+    {
+      "id": "fireboy-watergirl",
+      "name": "Fireboy and Watergirl",
+      "category": "Puzzle",
+      "thumbnail": "/icons/games/fireboy-watergirl.png",
+      "url": "https://www.crazygames.com/game/fireboy-and-watergirl-1-forest-temple",
+      "useProxy": true,
+      "description": "Co-op puzzle platforming with two elements.",
+      "plays": 28901
+    }
+  ]
+}
+

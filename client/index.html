@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aether – Web Proxy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/app.svg" />
+    <link rel="stylesheet" href="/src/styles/tokens.css" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/src/styles/layout.css" />
+    <link rel="stylesheet" href="/src/styles/components.css" />
+    <link rel="stylesheet" href="/src/styles/sections.css" />
+    <link rel="stylesheet" href="/src/styles/admin.css" />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <aside class="sidebar" aria-label="Aether navigation">
+        <div class="sidebar-logo">
+          <span class="logo-orb"></span>
+          <span class="logo-text">Aether</span>
+        </div>
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-route="#/games">
+            <span class="nav-icon">🎮</span>
+            <span class="nav-label">Games</span>
+          </button>
+          <button class="nav-item" data-route="#/browser">
+            <span class="nav-icon">🌐</span>
+            <span class="nav-label">Browser</span>
+          </button>
+          <button class="nav-item" data-route="#/apps">
+            <span class="nav-icon">📦</span>
+            <span class="nav-label">Apps</span>
+          </button>
+          <button class="nav-item" data-route="#/addons">
+            <span class="nav-icon">✨</span>
+            <span class="nav-label">Addons</span>
+          </button>
+          <button class="nav-item" data-route="#/settings">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Settings</span>
+          </button>
+        </nav>
+      </aside>
+      <div class="main-column">
+        <header class="topbar">
+          <div class="topbar-left">
+            <span class="topbar-hint">Ctrl+K for admin</span>
+          </div>
+          <div class="topbar-motd" id="motd-ticker">
+            <span class="motd-inner" id="motd-text"></span>
+          </div>
+          <div class="topbar-right">
+            <span class="topbar-status-dot"></span>
+            <span class="topbar-status-label">Proxy Ready</span>
+          </div>
+        </header>
+        <main id="main-content" class="main-content" tabindex="-1"></main>
+      </div>
+    </div>
+
+    <div id="modal-root"></div>
+    <div id="toast-root" class="toast-stack"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+

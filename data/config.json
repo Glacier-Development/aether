@@ -1,0 +1,11 @@
+{
+  "maintenance": {
+    "enabled": false,
+    "message": "We're performing maintenance. Back soon!"
+  },
+  "motd": {
+    "enabled": true,
+    "text": "Welcome to Aether — browse freely."
+  }
+}
+
