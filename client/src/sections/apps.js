@@ -6,11 +6,24 @@ async function fetchApps() {
   if (appsCache) return appsCache;
   const cached = sessionStorage.getItem('aether_apps');
   if (cached) {
-    appsCache = JSON.parse(cached);
-    return appsCache;
+    try {
+      appsCache = JSON.parse(cached);
+      return appsCache;
+    } catch {
+      sessionStorage.removeItem('aether_apps');
+    }
   }
   const res = await fetch('/api/apps');
-  const data = await res.json();
+  const contentType = res.headers.get('content-type') || '';
+  let data = { apps: [] };
+  if (res.ok && contentType.includes('application/json')) {
+    try {
+      const text = await res.text();
+      if (text.trim()) data = JSON.parse(text);
+    } catch {
+      data = { apps: [] };
+    }
+  }
   appsCache = data;
   sessionStorage.setItem('aether_apps', JSON.stringify(data));
   return data;

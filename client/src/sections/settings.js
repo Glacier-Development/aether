@@ -1,3 +1,5 @@
+import { showToast } from '../components/toast.js';
+
 const SETTINGS_KEY = 'aether_settings';
 
 const DEFAULTS = {
@@ -283,18 +285,39 @@ export async function render() {
   cloakRow.appendChild(cloakRight);
   cloakGroup.appendChild(cloakRow);
 
+  const btnRow = document.createElement('div');
+  btnRow.className = 'settings-actions';
+  btnRow.style.marginTop = '20px';
+  btnRow.style.display = 'flex';
+  btnRow.style.gap = '10px';
+  btnRow.style.flexWrap = 'wrap';
+
+  const applyBtn = document.createElement('button');
+  applyBtn.className = 'btn btn-primary';
+  applyBtn.textContent = 'Apply';
+  applyBtn.addEventListener('click', () => {
+    const s = loadSettings();
+    applyAccent(s.accentColor);
+    applyFontSize(s.fontSize);
+    applyCloak(s.cloak);
+    showToast('Settings applied.', 'success');
+  });
+
   const resetBtn = document.createElement('button');
   resetBtn.className = 'btn btn-secondary';
   resetBtn.textContent = 'Reset to defaults';
-  resetBtn.style.marginTop = '10px';
   resetBtn.addEventListener('click', () => {
     saveSettings(DEFAULTS);
+    showToast('Settings reset. Reloading…', 'info');
     window.location.reload();
   });
+
+  btnRow.appendChild(applyBtn);
+  btnRow.appendChild(resetBtn);
 
   main.appendChild(appearanceGroup);
   main.appendChild(behaviorGroup);
   main.appendChild(cloakGroup);
-  main.appendChild(resetBtn);
+  main.appendChild(btnRow);
 }
 

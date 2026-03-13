@@ -53,14 +53,33 @@ async function navigateWithCheck(rawInput) {
     return;
   }
 
-  const proxied = `/api/proxy?url=${encodeURIComponent(url)}`;
+  let token;
+  try {
+    const res = await fetch('/api/proxy/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url }),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.reason || 'Failed to create session');
+    }
+    const data = await res.json();
+    token = data.token;
+  } catch (e) {
+    frameWrapper.innerHTML = '';
+    const err = document.createElement('div');
+    err.className = 'blocked-screen';
+    err.innerHTML = `<div class="blocked-title">Failed to load</div><div class="blocked-reason">${String(e.message || 'Try again.')}</div>`;
+    frameWrapper.appendChild(err);
+    return;
+  }
+
   frameWrapper.innerHTML = '';
   iframeEl = document.createElement('iframe');
   iframeEl.className = 'browser-frame-inner';
-  iframeEl.src = proxied;
-  iframeEl.onload = () => {
-    // optional: mark as loaded
-  };
+  iframeEl.src = `/api/proxy/${token}`;
+  iframeEl.setAttribute('allow', 'fullscreen; autoplay; picture-in-picture; encrypted-media');
   iframeEl.onerror = () => {
     const err = document.createElement('div');
     err.className = 'blocked-screen';
@@ -188,9 +207,23 @@ export async function render(props = {}) {
 
   chrome.appendChild(toolbar);
 
+  const frameContainer = document.createElement('div');
+  frameContainer.className = 'browser-frame-container';
   frameWrapper = document.createElement('div');
   frameWrapper.className = 'browser-frame';
-  chrome.appendChild(frameWrapper);
+  const fullscreenBtn = document.createElement('button');
+  fullscreenBtn.className = 'btn btn-ghost browser-fullscreen-btn';
+  fullscreenBtn.title = 'Fullscreen';
+  fullscreenBtn.textContent = '⛶';
+  fullscreenBtn.type = 'button';
+  fullscreenBtn.addEventListener('click', () => {
+    const el = frameWrapper.requestFullscreen ? frameWrapper : document.documentElement;
+    if (el.requestFullscreen) el.requestFullscreen();
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  });
+  frameContainer.appendChild(frameWrapper);
+  frameContainer.appendChild(fullscreenBtn);
+  chrome.appendChild(frameContainer);
 
   main.appendChild(title);
   main.appendChild(subtitle);

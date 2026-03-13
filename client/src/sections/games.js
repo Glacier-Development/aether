@@ -7,11 +7,24 @@ async function fetchGames() {
   if (gamesCache) return gamesCache;
   const cached = sessionStorage.getItem('aether_games');
   if (cached) {
-    gamesCache = JSON.parse(cached);
-    return gamesCache;
+    try {
+      gamesCache = JSON.parse(cached);
+      return gamesCache;
+    } catch {
+      sessionStorage.removeItem('aether_games');
+    }
   }
   const res = await fetch('/api/games');
-  const data = await res.json();
+  const contentType = res.headers.get('content-type') || '';
+  let data = { categories: [], games: [] };
+  if (res.ok && contentType.includes('application/json')) {
+    try {
+      const text = await res.text();
+      if (text.trim()) data = JSON.parse(text);
+    } catch {
+      data = { categories: [], games: [] };
+    }
+  }
   gamesCache = data;
   sessionStorage.setItem('aether_games', JSON.stringify(data));
   return data;
@@ -68,16 +81,49 @@ function renderGrid(container, games) {
   });
 }
 
-function launchGame(game) {
-  const url = `/api/proxy?url=${encodeURIComponent(game.url)}`;
+async function launchGame(game) {
+  let token;
+  try {
+    const res = await fetch('/api/proxy/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: game.url }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.reason || 'Failed to create session');
+    }
+    const data = await res.json();
+    token = data.token;
+  } catch (e) {
+    const errEl = document.createElement('div');
+    errEl.className = 'blocked-screen';
+    errEl.innerHTML = `<div class="blocked-title">Could not load game</div><div class="blocked-reason">${String(e.message || 'Try again.')}</div>`;
+    openModal({ title: game.name, contentNode: errEl });
+    return;
+  }
+
   const frame = document.createElement('iframe');
-  frame.src = url;
-  frame.className = 'browser-frame-inner';
+  frame.src = `/api/proxy/${token}`;
+  frame.className = 'browser-frame-inner browser-frame-full';
   frame.allowFullscreen = true;
+  frame.setAttribute('allow', 'fullscreen; autoplay; picture-in-picture');
 
   const wrapper = document.createElement('div');
-  wrapper.style.height = '70vh';
-  wrapper.className = 'browser-frame';
+  wrapper.className = 'browser-frame game-modal-frame';
+
+  const toolbar = document.createElement('div');
+  toolbar.className = 'game-modal-toolbar';
+  const fullscreenBtn = document.createElement('button');
+  fullscreenBtn.className = 'btn btn-secondary game-fullscreen-btn';
+  fullscreenBtn.textContent = '⛶ Fullscreen';
+  fullscreenBtn.type = 'button';
+  fullscreenBtn.addEventListener('click', () => {
+    if (wrapper.requestFullscreen) wrapper.requestFullscreen();
+    else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+  });
+  toolbar.appendChild(fullscreenBtn);
+  wrapper.appendChild(toolbar);
   wrapper.appendChild(frame);
 
   openModal({

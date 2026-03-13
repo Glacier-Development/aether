@@ -37,6 +37,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
+  min-height: 0;
 }
 
 .browser-toolbar {
@@ -56,20 +58,63 @@
   gap: 6px;
 }
 
-.browser-frame {
+.browser-frame-container {
+  position: relative;
   margin-top: 8px;
+  flex: 1;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.browser-frame {
+  flex: 1;
+  min-height: 65vh;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
   overflow: hidden;
   background: #020617;
-  min-height: 440px;
+}
+
+.browser-fullscreen-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  padding: 6px 10px;
+  font-size: 16px;
 }
 
 .browser-frame-inner {
   width: 100%;
   height: 100%;
+  min-height: 65vh;
   border: none;
 }
+
+.game-modal-frame {
+  height: 85vh;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.game-modal-toolbar {
+  flex-shrink: 0;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.game-modal-frame .browser-frame-inner {
+  flex: 1;
+  min-height: 0;
+}
+
 
 .apps-grid {
   display: grid;
@@ -149,6 +194,14 @@
   border-radius: var(--radius-lg);
   background: rgba(15, 23, 42, 0.96);
   border: 1px solid var(--border-subtle);
+}
+
+.settings-row {
+  margin-bottom: 12px;
+}
+
+.settings-row:last-child {
+  margin-bottom: 0;
 }
 
 .settings-group-title {

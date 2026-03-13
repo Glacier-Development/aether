@@ -148,7 +148,7 @@ function showAdminPanel() {
   async function renderMaintenance() {
     content.innerHTML = '';
     const cfgRes = await fetch('/api/config');
-    const cfg = await cfgRes.json();
+    const cfg = await cfgRes.json().catch(() => ({}));
     const current = cfg.maintenance || { enabled: false, message: '' };
 
     const row = document.createElement('div');
@@ -172,14 +172,8 @@ function showAdminPanel() {
     thumb.className = 'toggle-thumb';
     toggle.appendChild(thumb);
 
-    toggle.addEventListener('click', async () => {
-      const next = toggle.dataset.on !== 'true';
-      toggle.dataset.on = next ? 'true' : 'false';
-      await adminFetch('/api/admin/maintenance', {
-        method: 'POST',
-        body: JSON.stringify({ enabled: next }),
-      });
-      showToast(`Maintenance ${next ? 'enabled' : 'disabled'}`, 'info');
+    toggle.addEventListener('click', () => {
+      toggle.dataset.on = toggle.dataset.on !== 'true' ? 'true' : 'false';
     });
 
     row.appendChild(main);
@@ -188,25 +182,36 @@ function showAdminPanel() {
     const msg = document.createElement('textarea');
     msg.className = 'input';
     msg.style.marginTop = '10px';
+    msg.style.width = '100%';
     msg.rows = 3;
     msg.maxLength = 200;
     msg.value = current.message || '';
-    msg.addEventListener('change', async () => {
-      await adminFetch('/api/admin/maintenance', {
+
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'btn btn-primary';
+    saveBtn.textContent = 'Apply';
+    saveBtn.style.marginTop = '10px';
+    saveBtn.addEventListener('click', async () => {
+      const res = await adminFetch('/api/admin/maintenance', {
         method: 'POST',
-        body: JSON.stringify({ enabled: toggle.dataset.on === 'true', message: msg.value }),
+        body: JSON.stringify({
+          enabled: toggle.dataset.on === 'true',
+          message: msg.value.trim(),
+        }),
       });
-      showToast('Maintenance message updated.', 'success');
+      if (res.ok) showToast('Maintenance settings applied.', 'success');
+      else showToast('Failed to save.', 'error');
     });
 
     content.appendChild(row);
     content.appendChild(msg);
+    content.appendChild(saveBtn);
   }
 
   async function renderMotd() {
     content.innerHTML = '';
     const cfgRes = await fetch('/api/config');
-    const cfg = await cfgRes.json();
+    const cfg = await cfgRes.json().catch(() => ({}));
     const current = cfg.motd || { enabled: true, text: '' };
 
     const row = document.createElement('div');
@@ -230,14 +235,8 @@ function showAdminPanel() {
     thumb.className = 'toggle-thumb';
     toggle.appendChild(thumb);
 
-    toggle.addEventListener('click', async () => {
-      const next = toggle.dataset.on !== 'true';
-      toggle.dataset.on = next ? 'true' : 'false';
-      await adminFetch('/api/admin/motd', {
-        method: 'POST',
-        body: JSON.stringify({ enabled: next, text: text.value }),
-      });
-      showToast(`MOTD ${next ? 'enabled' : 'disabled'}`, 'info');
+    toggle.addEventListener('click', () => {
+      toggle.dataset.on = toggle.dataset.on !== 'true' ? 'true' : 'false';
     });
 
     row.appendChild(main);
@@ -248,25 +247,32 @@ function showAdminPanel() {
     text.maxLength = 100;
     text.value = current.text || '';
     text.style.marginTop = '10px';
-    text.addEventListener('change', async () => {
-      await adminFetch('/api/admin/motd', {
+    text.style.width = '100%';
+    text.placeholder = 'Message of the day';
+
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'btn btn-primary';
+    saveBtn.textContent = 'Apply';
+    saveBtn.style.marginTop = '10px';
+    saveBtn.addEventListener('click', async () => {
+      const res = await adminFetch('/api/admin/motd', {
         method: 'POST',
-        body: JSON.stringify({ enabled: toggle.dataset.on === 'true', text: text.value }),
+        body: JSON.stringify({
+          enabled: toggle.dataset.on === 'true',
+          text: text.value.trim(),
+        }),
       });
-      showToast('MOTD updated.', 'success');
+      if (res.ok) showToast('MOTD applied.', 'success');
+      else showToast('Failed to save.', 'error');
     });
 
     content.appendChild(row);
     content.appendChild(text);
+    content.appendChild(saveBtn);
   }
 
   async function renderBlocklist() {
     content.innerHTML = '';
-    const res = await fetch('/api/config'); // not used here, just placeholder to keep style similar
-    void res;
-    const entriesRes = await fetch('/api/check-url?url=https://example.com');
-    void entriesRes;
-
     const table = document.createElement('div');
     table.style.display = 'flex';
     table.style.flexDirection = 'column';
@@ -275,8 +281,8 @@ function showAdminPanel() {
 
     async function loadRows() {
       table.innerHTML = '';
-      const raw = await fetch('/data/blocklist.json').then((r) => r.json()).catch(() => []);
-      const rows = Array.isArray(raw) ? raw : raw.entries || [];
+      const raw = await adminFetch('/api/admin/blocklist').then((r) => r.json()).catch(() => []);
+      const rows = Array.isArray(raw) ? raw : [];
       rows.forEach((entry) => {
         const row = document.createElement('div');
         row.style.display = 'flex';

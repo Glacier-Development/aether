@@ -17,6 +17,7 @@ async function readBlocklist() {
 }
 
 async function writeBlocklist(entries) {
+  await fs.mkdir(path.dirname(BLOCKLIST_PATH), { recursive: true });
   const tmp = BLOCKLIST_PATH + '.tmp';
   await fs.writeFile(tmp, JSON.stringify(entries, null, 2));
   await fs.rename(tmp, BLOCKLIST_PATH);
@@ -54,6 +55,12 @@ export default async function adminRoutes(fastify) {
       },
     });
     reply.send(next.motd);
+  });
+
+  fastify.get('/blocklist', async (request, reply) => {
+    if (!requireAdmin(request, reply)) return;
+    const entries = await readBlocklist();
+    reply.send(entries);
   });
 
   fastify.post('/blocklist', async (request, reply) => {

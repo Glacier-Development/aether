@@ -12,23 +12,34 @@ export default async function staticRoutes(fastify) {
   });
 
   fastify.get('/api/games', async (request, reply) => {
+    reply.type('application/json');
     const gamesPath = path.join(process.cwd(), 'data', 'games.json');
-    const data = await fs.readFile(gamesPath).catch(() => null);
-    if (!data) {
-      reply.code(200).send({ categories: [], games: [] });
-      return;
+    try {
+      const data = await fs.readFile(gamesPath, 'utf-8');
+      const parsed = data.trim() ? JSON.parse(data) : {};
+      const payload = {
+        categories: Array.isArray(parsed.categories) ? parsed.categories : [],
+        games: Array.isArray(parsed.games) ? parsed.games : [],
+      };
+      return reply.code(200).send(payload);
+    } catch {
+      return reply.code(200).send({ categories: [], games: [] });
     }
-    reply.type('application/json').send(JSON.parse(data.toString('utf-8')));
   });
 
   fastify.get('/api/apps', async (request, reply) => {
+    reply.type('application/json');
     const appsPath = path.join(process.cwd(), 'data', 'apps.json');
-    const data = await fs.readFile(appsPath).catch(() => null);
-    if (!data) {
-      reply.code(200).send({ apps: [] });
-      return;
+    try {
+      const data = await fs.readFile(appsPath, 'utf-8');
+      const parsed = data.trim() ? JSON.parse(data) : {};
+      const payload = {
+        apps: Array.isArray(parsed.apps) ? parsed.apps : [],
+      };
+      return reply.code(200).send(payload);
+    } catch {
+      return reply.code(200).send({ apps: [] });
     }
-    reply.type('application/json').send(JSON.parse(data.toString('utf-8')));
   });
 }
 
